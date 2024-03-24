@@ -1,20 +1,23 @@
-import ContactForm from 'components/ContactForm/ContactForm';
-import Filter from 'components/Filter/Filter';
-import ContactList from 'components/ContactList/ContactList';
-import { Container } from '@mui/material';
-import { MainHeading, SecondHeading } from './App.styled';
+import { Route, Routes } from 'react-router-dom';
 
-const App = () => {
+import SharedLayout from '../../layout/SharedLayout/SharedLayout';
+
+import Home from '../../pages/Home';
+import Catalog from '../../pages/Catalog';
+import Favorites from '../../pages/Favorites';
+
+function App() {
   return (
-    <Container>
-      <MainHeading>Phonebook</MainHeading>
-      <ContactForm />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route path="catalog" element={<Catalog />} />
+        <Route path="favorites" element={<Favorites />} />
 
-      <SecondHeading>Contacts</SecondHeading>
-      <Filter />
-      <ContactList />
-    </Container>
+        <Route path="*" element={<div>PageNotFound</div>} />
+      </Route>
+    </Routes>
   );
-};
+}
 
 export default App;
